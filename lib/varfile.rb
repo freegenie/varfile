@@ -24,7 +24,7 @@ module Varfile
     def get(key)
       file = file_or_default(options)
       content = read_file(file)
-      content[key]
+      puts content[key]
     end
 
     desc "list", "lists all keys to file" 
@@ -32,7 +32,7 @@ module Varfile
     def list
       file = file_or_default(options)
       content = read_file(file)
-      printable_content(content)
+      puts printable_content(content)
     end
 
     private 
