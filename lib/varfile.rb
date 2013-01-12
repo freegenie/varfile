@@ -8,7 +8,7 @@ module Varfile
 
     desc "set", "sets a key to file"
     method_options :file => :string
-    def set(key, value, options={})
+    def set(key, value)
       file = file_or_default(options)
 
       key = normalize_key(key)
@@ -21,7 +21,7 @@ module Varfile
 
     desc "get", "get the value of key from file"
     method_options :file => :string
-    def get(key, options={})
+    def get(key)
       file = file_or_default(options)
       content = read_file(file)
       content[key]
@@ -29,7 +29,7 @@ module Varfile
 
     desc "list", "lists all keys to file" 
     method_options :file => :string
-    def list(options={})
+    def list
       file = file_or_default(options)
       content = read_file(file)
       printable_content(content)
