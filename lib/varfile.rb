@@ -36,8 +36,19 @@ module Varfile
       puts_and_return printable_content(content)
     end
 
-    def output
-      @output ||= STDOUT
+    desc "rm", "remove a key from file"
+    method_options :file => :string
+    def rm(key)
+      file = file_or_default(options)
+      content = read_file(file)
+      content.delete key
+      save_file(content, file)
+    end
+
+    no_tasks do
+      def output
+        @output ||= STDOUT
+      end
     end
 
     private 

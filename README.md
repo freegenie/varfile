@@ -36,6 +36,15 @@ $ varfile list --file=/u/app/shared/config/.env
 FOO=bar
 ```
 
+```bash
+$ varfile rm FOO --file=/u/app/shared/config/.env
+```
+
+```bash
+$ varfile list --file=/u/app/shared/config/.env
+$
+```
+
 If `--file` option is missing, variables will be written to a file named
 `Varfile`.
 

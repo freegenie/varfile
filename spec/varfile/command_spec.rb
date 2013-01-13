@@ -6,9 +6,18 @@ class TestOutput
     @output << string
   end
 
-  def inspect
-    @output.join "\n"
+  def flush
+    format @output.slice!(0, @output.count)
   end
+
+  def inspect
+    format @output
+  end
+
+  def format(array)
+    array.join "\n"
+  end
+
 end
 
 describe Varfile::Command do 
@@ -68,6 +77,20 @@ describe Varfile::Command do
          diet=paleo
         }.gsub(' ', '')
 
+    end
+  end
+
+  describe 'rm' do
+    it 'should remove variable from file' do
+      subject.set('sport', 'racing')
+      test = subject
+      test.list
+      test.output.flush.should == "sport=racing\n"
+
+      subject.rm('sport')
+
+      test.list
+      test.output.flush.should == ""
     end
   end
 end
