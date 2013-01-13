@@ -5,6 +5,7 @@ require 'pathname'
 module Varfile
   class Command < Thor
     attr_reader :file_path
+    attr_accessor :output
 
     desc "set", "sets a key to file"
     method_options :file => :string
@@ -24,7 +25,7 @@ module Varfile
     def get(key)
       file = file_or_default(options)
       content = read_file(file)
-      puts content[key]
+      puts_and_return content[key]
     end
 
     desc "list", "lists all keys to file" 
@@ -32,10 +33,19 @@ module Varfile
     def list
       file = file_or_default(options)
       content = read_file(file)
-      puts printable_content(content)
+      puts_and_return printable_content(content)
+    end
+
+    def output
+      @output ||= STDOUT
     end
 
     private 
+
+    def puts_and_return(text)
+      output.puts text
+      text
+    end
 
     def file_or_default(options)
       file = options[:file] ? options[:file] : default_file
