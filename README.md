@@ -1,6 +1,10 @@
 # Varfile
 
-TODO: Write a gem description
+Varfile is a little executable to write and read variables from a text file.
+It's job is trivial, but the little automation becomes very handy when dealing
+distributed environments. Varfile is suitable to be used as a tool for
+configuration of remote servers when used in conjunction with other automation
+tools like capistrano.
 
 ## Installation
 
@@ -18,7 +22,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```bash
+$ varfile set FOO bar --file=/u/app/shared/config/.env
+```
+
+```bash
+$ varfile get FOO --file=/u/app/shared/config/.env
+bar
+```
+
+```bash
+$ varfile list --file=/u/app/shared/config/.env
+FOO=bar
+```
+
+If `--file` option is missing, variables will be written to a file named
+`Varfile`.
 
 ## Contributing
 
