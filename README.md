@@ -22,27 +22,30 @@ Or install it yourself as:
 
 ## Usage
 
+Set a value for a key:
+
 ```bash
 $ varfile set FOO bar --file=/u/app/shared/config/.env
 ```
+
+Get the value of a key:
 
 ```bash
 $ varfile get FOO --file=/u/app/shared/config/.env
 bar
 ```
 
+List all keys and values: 
+
 ```bash
 $ varfile list --file=/u/app/shared/config/.env
 FOO=bar
 ```
 
-```bash
-$ varfile rm FOO --file=/u/app/shared/config/.env
-```
+Remove a key: 
 
 ```bash
-$ varfile list --file=/u/app/shared/config/.env
-$
+$ varfile rm FOO --file=/u/app/shared/config/.env
 ```
 
 If `--file` option is missing, variables will be written to a file named
