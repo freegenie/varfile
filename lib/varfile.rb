@@ -84,7 +84,7 @@ module Varfile
           next if line.strip == '' 
 
           key, value = line.split '='
-          content[key] = value.strip
+          content[key] = value.to_s.strip
         end
       end
       content
